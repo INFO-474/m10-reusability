@@ -1,0 +1,6 @@
+# Ignore large data file
+exercise-1/data/WDI_Data.csv
+
+# R data files
+.RData
+.Rhistory
