@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 10: Exercise 2</title>
+
+  <!-- Libraries -->
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css"/>
+
+  <!-- your script file -->
+  <script src="js/main.js"></script>
+  <script src="js/ParagraphChart.js"></script>
+</head>
+<body>
+    <div class="container">
+      <h1>Module 10 Exercise 2</h1>
+      <p> In this exercise, you'll build a web-page that displays multiple pieces of text, and provides an interface (a <code>form</code>) for manipulating the <code>color</code> and <code>fontSize</code> of that text. In order to build and use a reusable chart function, you'll need to work in both the <code>js/ParagraphChart.js</code> and <code>js/main.js</code> files. Let's begin by writing our reusable chart function. This funciton will be called by a <strong>selection</strong> that has an array of objects bound as it's data. Your function will use the <strong>data-join</strong> to add a different paragraph (<code>p</code>) for each object in the array. It will also expose methods for setting the <code>color</code> and <code>fontSize</code> of the <code>p</code> elements. In your <code>js/ParagraphChart.js</code> file, do the following:
+      </p>
+      <div class="instructions">
+        <ul>
+          <li>Create a function <code>ParagraphChart</code> that will be your reusable function.</li>
+          <li>Create variables within the function scope to track your <code>color</code> and <code>fontSize</code>.</li>
+          <li>Write your <code>chart</code> function that will be returned by the <code>ParagraphChart</code> function. It should take in a parameter that represents your <code>selection</code>.</li>
+          <li>Inside your <code>chart</code> function, you should use the <code>.each</code> method to loop through your selections (though there will only be one in this case). The <code>.each</code> method takes in a <strong>function</strong> as it's parameter, and that function's parameter represents the <code>data</code> bound to your selection.</li>
+          <li>Inside the <code>.each</code> function, use D3 to select the current context (i.e., <code>d3.select(this)</code>) as the element in which you want to render your chart. Make sure to store that selecdtion in a variable in which you'll perform your data-join.</li>
+          <li>Using the <code>data</code> parameter of the <code>.each</code> function, perform a <strong>data-join</strong> on the <code>div</code> element you've selected. As always, you'll need to <code>enter</code>, <code>exit</code>, and <code>update</code> elements. This completes your <code>chart</code> function.</li>
+          <li>Write getter/setter methods on your <code>chart</code> function that allow you to get or set the <code>color</code> and <code>fontSize</code> variables in your
+        </ul>
+      </div>
+      <section id="sandbox">
+        <form>
+          <div class="form-group">
+            <label for="color">Text Color</label>
+            <input class="form-control" id="color" placeholder="select a color...">
+          </div>
+          <div class="form-group">
+            <label for="font-size">Font Size</label>
+            <input class="form-control" id="font-size" placeholder="Choose a font size (input an integer)">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="container" id="my-div">
+        </div>
+      </section>
+  </body>
+</html>

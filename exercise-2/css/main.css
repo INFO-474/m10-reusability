@@ -1,0 +1,15 @@
+/* Main CSS file */
+
+p {
+  opacity:.7
+}
+
+.instructions > ul > li {
+  border-bottom:1px solid #D3d3d3;
+  list-style-type: none;
+  padding:10px;
+}
+
+#sandbox, #my-div {
+  margin-top:20px;
+}

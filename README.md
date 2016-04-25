@@ -130,6 +130,8 @@ person.ageMethod(22) // set the age, return the object
 
 This is a good start, but there are a few unpleasant features to our approach. Most prominently, this pattern requires storing multiple **properties** on our **object** that refer to the same concept (i.e., `age` and `ageMethod`). This is confusing for implementation purposes, and doesn't capture the full strength of getter/setter approach (i.e., who cares if the method can _get_ the current value if it's exposed as another property?). To address this challenge, we'll leverage the **closure** pattern to encapsulate variables.
 
+For some quick practice with getter/setter methods and method chaining, see [exercise-1](exercise-1).
+
 ## Closure
 One of the challenges most people encounter when starting to use JavaScript is determining the **scope** of variables. Invariably, you unintentionally define an element in the wrong scope and can't access it when you want to:
 
@@ -286,11 +288,41 @@ var myChart = chart() // Function that returns a funciton via closure
                 .height(500); // set parameters
 
 // Bind your dataset (datum) to a div element and call the chart function
-var chartG = d3.select('#my-div')
+var chartWrapper = d3.select('#my-div')
                 .datum([dataSet]) // a one element array containing your data array
-                .call(chart); // call the chart function!
+                .call(myChart); // call the chart function!
 ```
-When you bind your data object to your selected `div` element, you use the `.datum` method because you want to associate the entire dataset with the selected `g`. Then, inside your internal `my` function, the `selection` is your `div` element, and the `data` parameter is your `dataSet` array.
+When you bind your data object to your selected `div` element, you use the `.datum` method because you want to associate the entire dataset with the selected `div`. Then, inside your internal `my` function, the `selection` is your `div` element, and the `data` parameter is your `dataSet` array.
+
+## Updating Charts
+All this effort wouldn't be worth the effort if updating the charts wasn't relatively simple. As you might imagine, you way want to update the _data_ being displayed, or a visual _property_ of the chart, such as it's `width` or `height`. If you've written a thoughtful **data-join** inside your `chart` function, updating the chart should only require updating the data or a visual property, and then calling the instantiation of your `chart` function (i.e., `myChart`)from the wrapper (`chartWrapper`).
+
+```javascript
+// Construct a new instance of the chart function
+var myChart = chart() // Function that returns a funciton via closure
+                .width(500) // set parameters
+                .height(500); // set parameters
+
+// Bind your dataset (datum) to a div element and call the chart function
+var chartWrapper = d3.select('#my-div')
+                .datum([dataSet]) // a one element array containing your data array
+                .call(myChart); // call the chart function!
+...
+
+// A new array of objects for your chart function
+var newDataSetdataSet = [{...}, {...}, {...}];
+
+// Simply re-bind the data and call your `myChart` function
+chartWrapper.datum([newDataSet]).call(myChart);
+
+// If you want to change the width, change it on the `myChart` function-object
+myChart.width(1000);
+
+// The recall the function
+chartWrapper.call(myChart);
+```
+
+For some initial practice working with reusable charts, see [exercise-2](exercise-2).
 
 ## Next Steps
 Whew -- that's a lot. The first step will be to develop a firm understanding of how **getter/setter methods**, **method chaining**, **closures**,  and **D3 selections** work in tandem to create a pattern of reusability. Using this pattern, you can move away from writing one-off scripts for scatter-plots, and move towards reusable charts (as promised). This skeleton code provides a _starting point_ for reusability, but does not lend guidance for many design principles for developing your reusable code. This setup lends itself to many questions:
