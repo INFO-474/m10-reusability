@@ -1,6 +1,6 @@
 ## Exercise 2: Reusability
 
-This exercise brings together lessons from throughout the module. When you complete it, you should have an understanding of how to leverage the suggested pattern of reusability to build D3 components.
+This exercise brings together lessons from throughout the module. As usual, fork and clone this repository, and follow the steps outlines in the `index.html` file to build the project. When you complete it, you should have an understanding of how to leverage the suggested pattern of reusability to build D3 components.
 
 Your final product should look like this
 

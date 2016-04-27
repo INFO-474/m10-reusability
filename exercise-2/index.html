@@ -21,7 +21,7 @@
 <body>
     <div class="container">
       <h1>Module 10 Exercise 2</h1>
-      <p> In this exercise, you'll build a web-page that displays multiple pieces of text, and provides an interface (a <code>form</code>) for manipulating the <code>color</code> and <code>fontSize</code> of that text. In order to build and use a reusable chart function, you'll need to work in both the <code>js/ParagraphChart.js</code> and <code>js/main.js</code> files. Let's begin by writing our reusable chart function. This funciton will be called by a <strong>selection</strong> that has an array of objects bound as it's data. Your function will use the <strong>data-join</strong> to add a different paragraph (<code>p</code>) for each object in the array. It will also expose methods for setting the <code>color</code> and <code>fontSize</code> of the <code>p</code> elements. In your <code>js/ParagraphChart.js</code> file, do the following:
+      <p> In this exercise, you'll build a web-page that displays multiple pieces of text, and provides an interface (a <code>form</code>) for manipulating the <code>color</code> and <code>fontSize</code> of that text. In order to build and use a reusable chart function, you'll need to work in both the <code>js/ParagraphChart.js</code> and <code>js/main.js</code> files. Let's begin by writing our reusable chart function. This funciton will be called by a <strong>selection</strong> that has an array of objects bound as it's data (well, <em>datum</em>). Your function will use the <strong>data-join</strong> to add a different paragraph (<code>p</code>) for each object in the array. It will also expose methods for setting the <code>color</code> and <code>fontSize</code> of the <code>p</code> elements. In your <code>js/ParagraphChart.js</code> file, do the following:
       </p>
       <div class="instructions">
         <ul>
@@ -29,9 +29,21 @@
           <li>Create variables within the function scope to track your <code>color</code> and <code>fontSize</code>.</li>
           <li>Write your <code>chart</code> function that will be returned by the <code>ParagraphChart</code> function. It should take in a parameter that represents your <code>selection</code>.</li>
           <li>Inside your <code>chart</code> function, you should use the <code>.each</code> method to loop through your selections (though there will only be one in this case). The <code>.each</code> method takes in a <strong>function</strong> as it's parameter, and that function's parameter represents the <code>data</code> bound to your selection.</li>
-          <li>Inside the <code>.each</code> function, use D3 to select the current context (i.e., <code>d3.select(this)</code>) as the element in which you want to render your chart. Make sure to store that selecdtion in a variable in which you'll perform your data-join.</li>
+          <li>Inside the <code>.each</code> function, use D3 to select the current context (i.e., <code>d3.select(this)</code>) as the element in which you want to render your chart. Make sure to store that selection in a variable in which you'll perform your data-join.</li>
           <li>Using the <code>data</code> parameter of the <code>.each</code> function, perform a <strong>data-join</strong> on the <code>div</code> element you've selected. As always, you'll need to <code>enter</code>, <code>exit</code>, and <code>update</code> elements. This completes your <code>chart</code> function.</li>
-          <li>Write getter/setter methods on your <code>chart</code> function that allow you to get or set the <code>color</code> and <code>fontSize</code> variables in your
+          <li>Write getter/setter methods on your <code>chart</code> function that allow you to get or set the <code>color</code> and <code>fontSize</code> variables after the chart has been rendered.
+        </ul>
+        <p>In your <code>js/main.js</code> file, do the following (note, in this <code>index.html</code> file, the <code>js/ParagraphChart.js</code> file was read in <em>first</em>, making it's functions avaiable in <code>js/main.js</code>).
+        <ul>
+          <li>Create an instance of your <code>ParagraphChart</code>, setting the color to blue</li>
+          <li>Select the container div, bind the data (datum) to it, then call your instantiation of the <code>ParagraphChart</code> function to render your chart.</li>
+          <li>Inside the <code>form</code> submit event, do the following:
+              <ul>
+                <li>Get the color and font sizes from your form</li>
+                <li>Reset the color and fontSize of your chart function</li>
+                <li>Re-call your chart function on your <code>chartWrapper</code></li>
+              </ul>
+          </li>
         </ul>
       </div>
       <section id="sandbox">

@@ -10,10 +10,11 @@ $(function() {
     {text:'Paragraph 4'}
   ];
 
-  // Instantiate your ParagraphChart, setting the color to blue
+  // Create an instance of your ParagraphChart, setting the color to blue
   var myChart = ParagraphChart().color('blue');
 
-  // Select the container div, bind the data, and call the chart
+  // Select the container div, bind the data (datum) to it,
+  // then call your instantiation of the ParagraphChart function
   var chartWrapper = d3.select('#my-div')
       .datum(data)
       .call(myChart);
@@ -29,7 +30,7 @@ $(function() {
     myChart.color(color)
            .fontSize(fontSize);
 
-    // Re-call your chart function
+    // Re-call your chart function on your chartWrapper
     chartWrapper.call(myChart);
 
     return false; // don't reload the page

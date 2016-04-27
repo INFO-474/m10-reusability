@@ -3,7 +3,7 @@
 ## Overview
 In this module, we'll introduce a pattern for building reusable components with D3. We'll move away from writing code for a particular dataset, towards writing generalizable software that can be repurposed across projects (and people!). Building reusable components will allow you to reuse your code, integrate your visualizations more easily into larger development projects, and create useful software for the open-source community.
 
-More than anything else, this module is a supplement to Mike Bostock's excellent article [Towards Reusable Charts](https://bost.ocks.org/mike/chart/). The purpose is to more slowly introduce the related foundational JavaScript concepts, and provide a slightly simplified implementation.
+More than anything else, this module is a supplement to Mike Bostock's excellent article [Towards Reusable Charts](https://bost.ocks.org/mike/chart/). The purpose is to more slowly introduce the related foundational JavaScript concepts, and provide a detailed description and example of the implementation.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
@@ -25,6 +25,7 @@ Here are a few resources to help you better understand reusability patterns:
 - [JavaScript Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) _(MDN)_
 - [Method Chaining](https://en.wikipedia.org/wiki/Method_chaining) _(wiki)_
 - [Data versus Datum](http://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data) _(stackoverflow)_
+- [JavaScript This](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/) _(blog post)_
 
 ## Functions are Objects
 First things first: **functions are objects**. As described by [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function),
@@ -89,6 +90,10 @@ person.ageMethod(25); // Changes the age property
 person.ageMethod(); // Returns 25
 ```
 
+Recall that the `this` variable refers to the context of function execution. In the section above, `this` will refer to the object itself. As put in [this](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/) article (no pun intended):
+
+>First, know that all functions in JavaScript have properties, just as objects have properties. And when a function executes, it gets the this property—a variable with the value of the object that invokes the function where this is used.
+
 ## Method Chaining
 The above example is a decent start, but imagine we wanted a way to configure multiple properties of the `person` object (`age`, `shoeSize`). With the current method, this would require separate lines of code:
 
@@ -103,7 +108,7 @@ person.shoeSizeMethod = function(value) {
 person.ageMethod(25); // Changes the age property
 
 // Set the shoeSize
-person.shoeSizeMethod(7.5);
+person.shoeSizeMethod(7.5); // Changes the shoeSize property
 ```
 
 As you begin to assign multiple attributes, this becomes quite cumbersome. However, if each getter/setter method **returns the object itself** when the value is set, we're able to chain multiple (setter) methods together:
@@ -227,7 +232,7 @@ function chart() {
   };
 
   return my;
-}
+};
 ```
 
 Inside the proposed `my()` function is where you actually build the chart as you typically would (calculate scales, bind data, append axes, etc.). To understand how this would be implemented, let's take a look at the `d3.scale` and `d3.svg.axis` functions, which follow the same reusability pattern suggested in this module:
