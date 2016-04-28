@@ -239,7 +239,7 @@ Inside the proposed `my()` function is where you actually build the chart as you
 
 ```javascript
 // Append a `g` element to an svg on your DOM in which to render your axis
-var axisG = d3.selecd('#my-svg').append('g');
+var axisG = d3.select('#my-svg').append('g');
 
 // Construct a scale function that exposes getter/setter methods for domain/range
 var scale = d3.scale.linear() // closure function that returns a function...
@@ -328,6 +328,8 @@ chartWrapper.call(myChart);
 ```
 
 For some initial practice working with reusable charts, see [exercise-2](exercise-2).
+
+Here's a [complete working example of a reusable chart](http://bl.ocks.org/curran/66d926fe73211fd650ec).
 
 ## Next Steps
 Whew -- that's a lot. The first step will be to develop a firm understanding of how **getter/setter methods**, **method chaining**, **closures**,  and **D3 selections** work in tandem to create a pattern of reusability. Using this pattern, you can move away from writing one-off scripts for scatter-plots, and move towards reusable charts (as promised). This skeleton code provides a _starting point_ for reusability, but does not lend guidance for many design principles for developing your reusable code. This setup lends itself to many questions:
