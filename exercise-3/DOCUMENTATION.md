@@ -1,5 +1,4 @@
 # Calc.js API Reference
-***
 
 The world's smallest JavaScript calculator library (probably).
 
