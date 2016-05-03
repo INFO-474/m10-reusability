@@ -3,7 +3,6 @@ window.Calc = (function() {
         var calc = {};
         calc.currNum = num;
 
-
         calc.getVal = function() {
             return this.currNum;
         }
@@ -25,6 +24,11 @@ window.Calc = (function() {
 
         calc.divide = function(n) {
             this.currNum /= n;
+            return this;
+        }
+
+        calc.clear = function() {
+            this.currNum = 0;
             return this;
         }
 
