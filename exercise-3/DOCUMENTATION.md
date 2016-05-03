@@ -20,7 +20,7 @@ The functions you should implement and document are as follows:
 
 ## Usage
 
-```
+```javascript
 var c1 = Calc(2);
 var c2 = Calc(10);
 
