@@ -1,8 +1,11 @@
 window.Calc = (function() {
+    // Write a constructor function which takes a number, stores it, and
+    // defines all Calc API functions
     var c = function(num) {
         var calc = {};
         calc.currNum = num;
 
+        // Implement getVal, plus, minus, times, divide, and clear
         calc.getVal = function() {
             return this.currNum;
         }
@@ -35,5 +38,6 @@ window.Calc = (function() {
         return calc;
     };
 
+    // Return your constructed object
     return c;
 })();
